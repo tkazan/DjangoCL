@@ -21,4 +21,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', home, name="home"),
     url(r'^pizza$', pizza, name="pizza"),
+    url(r'^num/(?P<min>\d+)/(?P<max>\d+)$', random_number, name="num"),
+    url(r'^pizzas$', pizza_list, name="pizza_list"),
 ]
