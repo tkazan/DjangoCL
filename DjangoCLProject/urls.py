@@ -26,4 +26,5 @@ urlpatterns = [
     url(r'^pizza2$', pizza2, name="pizza2"),
     url(r'^form$', form, name="form"),
     url(r'^post$', form, name="post"),
+    url(r'^get$', get_by_get, name="get"),
 ]

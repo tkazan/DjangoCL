@@ -105,3 +105,10 @@ def form(request):
         """.format(name, surname, gender, hobbies)
 
         return HttpResponse(html)
+
+
+def get_by_get(request):
+    name = request.GET.get("name")
+    surname = request.GET.get("surname")
+
+    return HttpResponse("User name is {} and surname is {}".format(name, surname))
