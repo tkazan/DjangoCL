@@ -22,9 +22,14 @@ def index(request):
 def room(request, id):
     id = int(id)
     room = Room.objects.get(pk=id)
+    if room.projector == True:
+        projector = "TAK"
+    else:
+        projector = "NIE"
 
     ctx = {
         "room": room,
+        "projector": projector,
     }
     return render(request, 'Book/room.html', ctx)
 

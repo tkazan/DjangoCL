@@ -7,10 +7,5 @@ Room details
 {% block content %}
     <h1>Wybrana sala: {{ room.name }}</h1>
     <p>Pojemność sali: {{ room.capacity }}</p>
-    {% if room.projector == True %}
-    <p>Czy projektor jest dostępny: TAK</p>
-    {% else %}
-    <p>Czy projektor jest dostępny: NIE</p>
-    {% endif %}
-
+    <p>Czy projektor jest dostępny: {{ projector }}</p>
 {% endblock %}
