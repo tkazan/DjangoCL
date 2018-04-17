@@ -74,6 +74,12 @@ def form(request):
             <label> Nazwisko
                 <input type="text" name="surname">
             </label><br/>
+            <label>Płeć
+                <select name="gender">
+                    <option value="">Select...</option>
+                    <option value="F">Female</option>
+                    <option value="M">Male</option>
+            </label>
                 <input type="submit" value="wyślij">     
         </form>
         """
@@ -83,9 +89,10 @@ def form(request):
     if request.method == 'POST':
         name = request.POST.get("name")
         surname = request.POST.get("surname")
+        gender = request.POST.get("gender")
 
         html = """
-        name: {}, surname: {}
-        """.format(name, surname)
+        name: {}, surname: {}, gender: {}
+        """.format(name, surname, gender)
 
         return HttpResponse(html)
