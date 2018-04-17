@@ -6,5 +6,11 @@ Sale konferencyjne
 
 {% block content %}
     <h1>Sale konferencyjne do wynajęcia</h1>
-
+    <ul>
+    {% for room in rooms %}
+         <a href="{% url 'book:room' room.id %}">
+            <li>Room name: {{ room.name }}, capacity: {{ room.capacity }}</li>
+        </a>
+    {% endfor %}
+    </ul>
 {% endblock %}
