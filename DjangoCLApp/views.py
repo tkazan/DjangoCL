@@ -80,6 +80,14 @@ def form(request):
                     <option value="F">Female</option>
                     <option value="M">Male</option>
             </label>
+            <label>Hobby
+                <input type="checkbox", name="hobby", value="football">PIŁKA NOŻNA
+                <input type="checkbox", name="hobby", value="music">MUZYKA
+                <input type="checkbox", name="hobby", value="movies">FILMY
+                <input type="checkbox", name="hobby", value="travels">PODRÓŻE
+                <input type="checkbox", name="hobby", value="books">KSIĄŻKI
+                <input type="checkbox", name="hobby", value="washing">ZMYWANIE
+            </label>
                 <input type="submit" value="wyślij">     
         </form>
         """
@@ -90,9 +98,10 @@ def form(request):
         name = request.POST.get("name")
         surname = request.POST.get("surname")
         gender = request.POST.get("gender")
+        hobbies = request.POST.getlist("hobby")
 
         html = """
-        name: {}, surname: {}, gender: {}
-        """.format(name, surname, gender)
+        name: {}, surname: {}, gender: {}, hobbies: {}
+        """.format(name, surname, gender, hobbies)
 
         return HttpResponse(html)
