@@ -1,5 +1,6 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.views.decorators.csrf import csrf_exempt
 from random import randint
 
 from .models import *
@@ -59,3 +60,32 @@ def pizza2(request):
     response.write('</ul>')
 
     return response
+
+
+@csrf_exempt
+def form(request):
+
+    if request.method == 'GET':
+        html = """
+        <form method="POST" action="/post">
+            <label> Imię
+                <input type="text" name="name">
+            </label><br/>
+            <label> Nazwisko
+                <input type="text" name="surname">
+            </label><br/>
+                <input type="submit" value="wyślij">     
+        </form>
+        """
+
+        return HttpResponse(html)
+
+    if request.method == 'POST':
+        name = request.POST.get("name")
+        surname = request.POST.get("surname")
+
+        html = """
+        name: {}, surname: {}
+        """.format(name, surname)
+
+        return HttpResponse(html)

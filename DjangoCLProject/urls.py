@@ -24,4 +24,6 @@ urlpatterns = [
     url(r'^num/(?P<min>\d+)/(?P<max>\d+)$', random_number, name="num"),
     url(r'^pizzas$', pizza_list, name="pizza_list"),
     url(r'^pizza2$', pizza2, name="pizza2"),
+    url(r'^form$', form, name="form"),
+    url(r'^post$', form, name="post"),
 ]
