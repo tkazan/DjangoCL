@@ -9,13 +9,10 @@ from .models import *
 
 
 def index(request):
-
     rooms = Room.objects.all()
-
     ctx = {
         'rooms': rooms,
     }
-
     return render(request, 'Book/index.html', ctx)
 
 
@@ -26,7 +23,6 @@ def room(request, id):
         projector = "TAK"
     else:
         projector = "NIE"
-
     ctx = {
         "room": room,
         "projector": projector,

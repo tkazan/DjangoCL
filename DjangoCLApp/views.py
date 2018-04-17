@@ -15,24 +15,19 @@ def home(request):
 
 
 def pizza(request):
-
     pizzas = Pizza.objects.all()
     pizza_list = []
-
     for pizza in pizzas:
         pizza_list.append((pizza.name, pizza.description))
-
     return HttpResponse(pizza_list)
 
 
 def random_number(request, min, max):
     num = randint(int(min), int(max))
-
     return HttpResponse('<h1>{}</h1>'.format(num))
 
 
 def pizza_list(request):
-
     margharita = Pizza.objects.get(pk=1)
     prosciutto = Pizza.objects.get(pk=2)
 
@@ -44,29 +39,22 @@ def pizza_list(request):
     </ol>
     """.format(margharita.name, margharita.description, margharita.prize,
                prosciutto.name, prosciutto.description, prosciutto.prize)
-
     return HttpResponse(html)
 
 
 def pizza2(request):
-
     pizzas = Pizza.objects.all()
-
     response = HttpResponse()
     response.write('<ul>')
-
     for pizza in pizzas:
         response.write('<li>{}: {}, cena: {}zł</li>'.format
                        (pizza.name, pizza.description, pizza.prize))
-
     response.write('</ul>')
-
     return response
 
 
 @csrf_exempt
 def form(request):
-
     if request.method == 'GET':
         html = """
         <form method="POST" action="/post">
@@ -93,10 +81,9 @@ def form(request):
                 <input type="submit" value="wyślij">     
         </form>
         """
-
         return HttpResponse(html)
 
-    if request.method == 'POST':
+    elif request.method == 'POST':
         name = request.POST.get("name")
         surname = request.POST.get("surname")
         gender = request.POST.get("gender")
@@ -112,7 +99,6 @@ def form(request):
 def get_by_get(request):
     name = request.GET.get("name")
     surname = request.GET.get("surname")
-
     return HttpResponse("User name is {} and surname is {}".format(name, surname))
 
 
@@ -139,7 +125,6 @@ def get_by_get(request):
 #             </label>
 #             <br/>
 #             <input type="submit" value="wyślij">
-#
 #         </form>
 #         """.format(pizza1, pizza1, pizza2, pizza2)
 #
@@ -150,9 +135,8 @@ def get_by_get(request):
 #         pizza = request.POST.getlist("pizza")
 #         delivery = request.POST.get("delivery")
 #
-#         return HttpResponse("User name: {}<br/> pizza: {}<br/> delivery: {}".format(
-#             user_name, pizza, delivery
-#         ))
+#         return HttpResponse("User name: {}<br/> pizza: {}<br/>
+#                             delivery: {}".format(user_name, pizza, delivery))
 
 
 @method_decorator(csrf_exempt, name='dispatch')
@@ -190,8 +174,7 @@ class FormView(View):
         self.delivery = request.POST.get("delivery")
 
         return HttpResponse("User name: {}<br/> pizza: {}<br/> delivery: {}".format(
-            self.user_name, self.pizza, self.delivery
-        ))
+            self.user_name, self.pizza, self.delivery))
 
 
 # same functionality as home function but view based on a class

@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from DjangoCLApp.views import *
 
-
+app_name = 'training'
 urlpatterns = [
     url(r'^$', home, name="home"),
     url(r'^pizza$', pizza, name="pizza"),
