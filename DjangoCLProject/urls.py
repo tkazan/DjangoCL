@@ -30,4 +30,5 @@ urlpatterns = [
     url(r'^form2$', FormView.as_view(), name="form2"),
     # url(r'^yourpizza$', form2, name="yourpizza"),
     url(r'^yourpizza$', FormView.as_view(), name="yourpizza"),
+    url(r'^index$', HomeView.as_view(), name="index"),
 ]

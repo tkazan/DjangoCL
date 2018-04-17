@@ -194,3 +194,10 @@ class FormView(View):
         ))
 
 
+# same functionality as home function but view based on a class
+class HomeView(View):
+
+    def get(self, request):
+        return HttpResponse('Hello World')
+
+
