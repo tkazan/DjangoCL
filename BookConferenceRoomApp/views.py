@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
 
@@ -37,7 +37,21 @@ class NewRoomView(View):
         return render(request, 'Book/new_room.html')
 
     def post(self, request):
-        pass
+        try:
+            name = request.POST.get("name")
+            capacity = request.POST.get("capacity")
+            projector = request.POST.get("projector")
+            proj = True if projector == "True" else False
+
+            Room.objects.create(name=name, capacity=capacity, projector=proj)
+            return redirect("/bookconfroom/")
+
+        except Exception as e:
+            message = "Niepoprawne dane: {}".format(e)
+            ctx = {
+                "message": message,
+            }
+            return render(request, 'Book/new_room.html', ctx)
 
 
 

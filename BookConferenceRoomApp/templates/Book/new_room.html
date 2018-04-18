@@ -1,11 +1,23 @@
 {% extends 'Book/base.html' %}
 
 {% block content %}
-    <form method="POST" action="{% url 'book:home' %}" class="form-row">
+
+
+    <h2>UTWÓRZ NOWĄ SALĘ KONFERENCYJNĄ</h2>
+    <p class="text-danger">{{ message }}</p>
+    <form method="POST" action="#">
+    {% csrf_token %}
         <label>NAZWA SALI
             <input type="text" name="name"><br/>
-
-        </label>
+        </label><br/>
+        <label>POJEMNOŚĆ SALI
+            <input type="number" name="capacity" placeholder="np. 50">
+        </label><br/>
+        <label>CZY JEST PROJEKTOR:
+            <input type="radio" name="projector" value="True">TAK
+            <input type="radio" name="projector" value="False">NIE
+        </label><br/>
+        <input class="btn btn-success" type="submit" value="UTWÓRZ">
     </form>
 
 {% endblock %}

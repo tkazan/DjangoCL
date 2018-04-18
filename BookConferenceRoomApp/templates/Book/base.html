@@ -10,7 +10,10 @@
 </head>
 <body>
     <div class="container">
-        <a href="{% url 'book:home' %}">HOME</a>
+        <nav class="nav">
+            <a class="nav-link" href="{% url 'book:home' %}">HOME</a>
+            <a class="nav-link" href="{% url 'book:new-room' %}">NOWA SALA</a>
+        </nav>
         {% block content %}
         {% endblock %}
     </div>
