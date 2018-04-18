@@ -28,7 +28,7 @@ def index(request):
 def room(request, id):
     id = int(id)
     room = Room.objects.get(pk=id)
-    reservations = room.reservation_set.all()
+    reservations = room.reservation_set.filter(date__gte=today).order_by('date')
     if room.projector == True:
         projector = "TAK"
     else:
