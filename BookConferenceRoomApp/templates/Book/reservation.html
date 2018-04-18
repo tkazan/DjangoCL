@@ -3,9 +3,30 @@
 {% block title %}Reservation{% endblock %}
 
 {% block content %}
-    Sala: {{ room.name }}
-    Zajęte terminy:
-    {% for book in reservations %}
-        {{ book }},
-    {% endfor %}
+    <br/>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <td>Sala:</td>
+            <td>{{ room.name }}</td>
+        </tr>
+        <tr>
+            <td>Zajęte terminy:</td>
+            <td>
+                {% for book in reservations %}
+                {{ book }}<br/>
+                {% endfor %}
+            </td>
+        </tr>
+    </table>
+
+    <h2>Zarezerwuj termin - sala {{ room.name }}</h2>
+    <p class="text-danger">{{ message }}</p>
+
+    <form method="post" action="#">
+    {% csrf_token %}
+        <label>Data:
+            <input type="date" name="date">
+        </label><br/>
+        <input type="submit" value="zarezerwuj" class="btn btn-success">
+    </form>
 {% endblock %}
