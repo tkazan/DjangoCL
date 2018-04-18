@@ -27,6 +27,8 @@
         <label>Data:
             <input type="date" name="date">
         </label><br/>
-        <input type="submit" value="zarezerwuj" class="btn btn-success">
+        <input type="submit" name="submit" value="zarezerwuj" class="btn btn-success">
+        <a href="{% url 'book:room' room.id %}">
+            <button class="btn btn-warning">Powrót do widoku sali</button></a>
     </form>
 {% endblock %}

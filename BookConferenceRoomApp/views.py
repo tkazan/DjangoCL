@@ -112,6 +112,7 @@ class DeleteView(View):
 
 
 class ReservationView(View):
+
     def get(self, request, id):
         id = int(id)
         room = Room.objects.get(pk=id)
@@ -121,6 +122,29 @@ class ReservationView(View):
             "reservations": reservations,
         }
         return render(request, 'Book/reservation.html', ctx)
+
+    def post(self, request, id):
+        id = int(id)
+        room = Room.objects.get(pk=id)
+        reservations = room.reservation_set.filter(date__gte=today).order_by(
+            'date')
+        if room.projector == True:
+            projector = "TAK"
+        else:
+            projector = "NIE"
+
+        if request.POST.get("submit"):
+            message = "Dziękujemy! Twoja rezerwacja powiodła się"
+        else:
+            message = ""
+            
+        ctx = {
+            "room": room,
+            "projector": projector,
+            "reservations": reservations,
+            "message": message,
+        }
+        return render(request, 'Book/room.html', ctx)
 
 
 
