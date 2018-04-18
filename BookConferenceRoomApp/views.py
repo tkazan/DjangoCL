@@ -2,18 +2,43 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
+from datetime import datetime
 
 from .models import *
 
 # Create your views here.
 
+today = datetime.today().strftime('%Y-%m-%d')
+
 
 def index(request):
     rooms = Room.objects.all()
+    for room in rooms:
+        if room.reservation_set.filter(date=today):
+            status = 'Zajęta'
+        else:
+            status = 'Wolna'
     ctx = {
         'rooms': rooms,
+        'status': status,
     }
     return render(request, 'Book/index.html', ctx)
+
+
+def show_room(request):
+    rooms = Rooms.objects.all().order_by('id')
+    status = dict()
+    for room in rooms:
+        if room.reservation_set.filter(reservation_date=today):
+            status[room.id] = 'Zajęta'
+        else:
+            status[room.id] = 'Wolna'
+    context = {
+        'today': today,
+        'rooms': rooms,
+        'status': status
+    }
+    return render(request, "show_room.html", context=context)
 
 
 def room(request, id):

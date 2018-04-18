@@ -18,7 +18,7 @@
         <tr>
             <td><a href="{% url 'book:room' room.id %}">{{ room.name }}</a></td>
             <td>{{ room.capacity }}</td>
-            <td>wolna/zajęta</td>
+            <td>{{ status }}</td>
             <td><a href="{% url 'book:modify' room.id %}"><button class="btn btn-warning">modyfikuj</button></a></td>
             <td><a href="{% url 'book:delete' room.id %}"><button class="btn btn-danger">usuń</button></a></td>
         </tr>
