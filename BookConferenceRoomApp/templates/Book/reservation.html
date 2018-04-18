@@ -1,0 +1,11 @@
+{% extends 'Book/base.html' %}
+
+{% block title %}Reservation{% endblock %}
+
+{% block content %}
+    Sala: {{ room.name }}
+    Zajęte terminy:
+    {% for book in reservations %}
+        {{ book }},
+    {% endfor %}
+{% endblock %}

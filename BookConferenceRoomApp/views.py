@@ -111,6 +111,18 @@ class DeleteView(View):
         return redirect("/bookconfroom/")
 
 
+class ReservationView(View):
+    def get(self, request, id):
+        id = int(id)
+        room = Room.objects.get(pk=id)
+        reservations = room.reservation_set.filter(date__gte=today).order_by('date')
+        ctx = {
+            "room": room,
+            "reservations": reservations,
+        }
+        return render(request, 'Book/reservation.html', ctx)
+
+
 
 
 
