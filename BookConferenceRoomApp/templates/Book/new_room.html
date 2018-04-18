@@ -1,0 +1,11 @@
+{% extends 'Book/base.html' %}
+
+{% block content %}
+    <form method="POST" action="{% url 'book:home' %}" class="form-row">
+        <label>NAZWA SALI
+            <input type="text" name="name"><br/>
+
+        </label>
+    </form>
+
+{% endblock %}

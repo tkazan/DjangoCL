@@ -13,7 +13,7 @@ class Room(models.Model):
 
 
 class Reservation(models.Model):
-    room = models.ForeignKey(Room, on_delete=models.CASCADE)
+    room = models.ManyToManyField(Room)
     date = models.DateField()
     comment = models.TextField()
 

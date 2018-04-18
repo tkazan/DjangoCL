@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import reverse
+from django.views import View
 
 from .models import *
 
@@ -28,6 +29,16 @@ def room(request, id):
         "projector": projector,
     }
     return render(request, 'Book/room.html', ctx)
+
+
+class NewRoomView(View):
+
+    def get(self, request):
+        return render(request, 'Book/new_room.html')
+
+    def post(self, request):
+        pass
+
 
 
 
