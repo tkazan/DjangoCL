@@ -55,7 +55,24 @@ class NewRoomView(View):
 
 
 class ModifyView(View):
-    pass
+
+    def get(self, request, id):
+        room = Room.objects.get(pk=id)
+        ctx = {
+            "room": room,
+        }
+        return render(request, 'Book/modify.html', ctx)
+
+    def post(self, request, id):
+        name = request.POST.get("name")
+        capacity = request.POST.get("capacity")
+        projector = True if request.POST.get('projector') else False
+        room = Room.objects.get(pk=id)
+        room.name = name
+        room.capacity = capacity
+        room.projector = projector
+        room.save()
+        return redirect("/bookconfroom/")
 
 
 class DeleteView(View):

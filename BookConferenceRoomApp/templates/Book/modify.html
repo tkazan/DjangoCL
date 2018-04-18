@@ -1,0 +1,26 @@
+{% extends 'Book/base.html' %}
+
+{% block title %}Modify room{% endblock %}
+
+{% block content %}
+    <h2>Modyfikacja sali konferencyjnej: {{ room.name }}</h2>
+    <form method="POST" action="#">
+    {% csrf_token %}
+        <label>Sala
+            <input type="text" name="name" value="{{ room.name }}" class="form-control">
+        </label>
+        <br/>
+        <label>Pojemność:
+            <input type="number" name="capacity", value="{{ room.capacity }}" class="form-control">
+        </label>
+        <br/>
+        {% if room.projector == True %}
+        <input type="checkbox" name="projector" checked="checked"> PROJEKTOR
+        {% else %}
+        <input type="checkbox" name="projector"> PROJEKTOR
+        {% endif %}
+        <br/>
+        <br/>
+        <input class="btn btn-warning" type="submit" value="MODYFIKUJ">
+    </form>
+{% endblock %}

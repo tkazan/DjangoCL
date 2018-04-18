@@ -2,16 +2,15 @@
 
 {% block content %}
 
-
     <h2>UTWÓRZ NOWĄ SALĘ KONFERENCYJNĄ</h2>
     <p class="text-danger">{{ message }}</p>
     <form method="POST" action="#">
     {% csrf_token %}
         <label>NAZWA SALI
-            <input type="text" name="name"><br/>
+            <input type="text" name="name" class="form-control">
         </label><br/>
         <label>POJEMNOŚĆ SALI
-            <input type="number" name="capacity" placeholder="np. 50">
+            <input type="number" name="capacity" placeholder="np. 50" class="form-control">
         </label><br/>
         <label>CZY JEST PROJEKTOR:
             <input type="radio" name="projector" value="True">TAK
