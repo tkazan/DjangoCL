@@ -25,25 +25,10 @@ def index(request):
     return render(request, 'Book/index.html', ctx)
 
 
-def show_room(request):
-    rooms = Rooms.objects.all().order_by('id')
-    status = dict()
-    for room in rooms:
-        if room.reservation_set.filter(reservation_date=today):
-            status[room.id] = 'Zajęta'
-        else:
-            status[room.id] = 'Wolna'
-    context = {
-        'today': today,
-        'rooms': rooms,
-        'status': status
-    }
-    return render(request, "show_room.html", context=context)
-
-
 def room(request, id):
     id = int(id)
     room = Room.objects.get(pk=id)
+    reservations = room.reservation_set.all()
     if room.projector == True:
         projector = "TAK"
     else:
@@ -51,6 +36,7 @@ def room(request, id):
     ctx = {
         "room": room,
         "projector": projector,
+        "reservations": reservations,
     }
     return render(request, 'Book/room.html', ctx)
 

@@ -3,7 +3,29 @@
 {% block title %}Room details{% endblock %}
 
 {% block content %}
-    <h1>Wybrana sala: {{ room.name }}</h1>
-    <p>Pojemność sali: {{ room.capacity }}</p>
-    <p>Czy projektor jest dostępny: {{ projector }}</p>
+    <br/>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <td>Sala konferencyjna</td>
+            <td>{{ room.name }}</td>
+        </tr>
+        <tr>
+            <td>Pojemność</td>
+            <td>{{ room.capacity }}</td>
+        </tr>
+        <tr>
+            <td>Projektor</td>
+            <td>{{ projector }}</td>
+        </tr>
+        <tr>
+            <td>Sala zajęta</td>
+            <td>{% for reservation in reservations %}{{ reservation }}{% endfor %}</td>
+        </tr>
+    </table>
+    <br/>
+{% comment %}
+    <form method="get" action="reservation.html">
+
+    </form>
+{% endcomment %}
 {% endblock %}
