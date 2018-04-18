@@ -54,6 +54,29 @@ class NewRoomView(View):
             return render(request, 'Book/new_room.html', ctx)
 
 
+class ModifyView(View):
+    pass
+
+
+class DeleteView(View):
+
+    def get(self, request, id):
+        room = Room.objects.get(pk=id)
+        ctx = {
+            "room": room,
+        }
+        return render(request, 'Book/delete.html', ctx)
+
+    def post(self, request, id):
+        action = request.POST.get("submit")
+
+        if action == "TAK":
+            room = Room.objects.get(pk=id)
+            room.delete()
+        return redirect("/bookconfroom/")
+
+
+
 
 
 

@@ -4,13 +4,28 @@
 
 {% block content %}
     <h1>Sale konferencyjne do wynajęcia</h1>
-    <ul>
-    {% for room in rooms %}
-         <a href="{% url 'book:room' room.id %}">
-            <li>Room name: {{ room.name }}, capacity: {{ room.capacity }}</li>
-        </a>
-    {% endfor %}
-    </ul>
+    <table class="table table-striped table-bordered">
+        <tr>
+            <thead class="thead lead">
+                <th>NAZWA SALI</th>
+                <th>POJEMNOŚĆ</th>
+                <th>STATUS</th>
+                <th>MODYFIKUJ</th>
+                <th>USUŃ</th>
+            </thead>
+        </tr>
+        {% for room in rooms %}
+        <tr>
+            <td><a href="{% url 'book:room' room.id %}">{{ room.name }}</a></td>
+            <td>{{ room.capacity }}</td>
+            <td>wolna/zajęta</td>
+            <td><a href="{% url 'book:modify' room.id %}"><button class="btn btn-warning">modyfikuj</button></a></td>
+            <td><a href="{% url 'book:delete' room.id %}"><button class="btn btn-danger">usuń</button></a></td>
+        </tr>
+        {% endfor %}
+    </table>
     <br/>
-    <a href="{% url 'book:new-room' %}">Utwórz nową salę konferencyjną</a>
+    <a href="{% url 'book:new-room' %}">
+        <button class="btn btn-success">Utwórz nową salę konferencyjną</button>
+    </a>
 {% endblock %}

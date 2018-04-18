@@ -6,6 +6,7 @@ urlpatterns = [
     url(r'^$', index, name="home"),
     url(r'^room/(?P<id>(\d)+)$', room, name="room"),
     url(r'^room/new$', NewRoomView.as_view(), name="new-room"),
-    # url(r'^room/new$', new_room, name="new-room"),
+    url(r'^room/modify/(?P<id>(\d)+)$', ModifyView.as_view(), name="modify"),
+    url(r'^room/delete/(?P<id>(\d)+)$', DeleteView.as_view(), name="delete"),
 
 ]
