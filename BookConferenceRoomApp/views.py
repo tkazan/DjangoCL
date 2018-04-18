@@ -5,7 +5,6 @@ from django.views import View
 
 from .models import *
 
-
 # Create your views here.
 
 
@@ -68,11 +67,19 @@ class ModifyView(View):
         capacity = request.POST.get("capacity")
         projector = True if request.POST.get('projector') else False
         room = Room.objects.get(pk=id)
-        room.name = name
-        room.capacity = capacity
-        room.projector = projector
-        room.save()
-        return redirect("/bookconfroom/")
+        try:
+            room.name = name
+            room.capacity = capacity
+            room.projector = projector
+            room.save()
+            return redirect("/bookconfroom/")
+        except Exception as e:
+            message = "Niepoprawne dane: {}".format(e)
+            ctx = {
+                "message": message,
+                "room": room,
+            }
+            return render(request, 'Book/modify.html', ctx)
 
 
 class DeleteView(View):
