@@ -33,4 +33,9 @@
     <a href="{% url 'book:new-room' %}">
         <button class="btn btn-success">Utwórz nową salę konferencyjną</button>
     </a>
+    <br/>
+    <form id="search" method="get" action="{% url 'book:search' %}">
+        <input type="submit" value="Szukaj" class="btn btn-warning">
+    </form>
+
 {% endblock %}

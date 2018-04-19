@@ -162,7 +162,8 @@ class ReservationView(View):
             projector = "TAK"
         else:
             projector = "NIE"
-        message = "Dziękujemy! Zarezerwowałeś salę: {} w dniu: {}".format(room.name, date)
+        message = """Dziękujemy! Zarezerwowałeś salę: 
+                     {} w dniu: {}""".format(room.name, date)
         ctx = {
             "room": room,
             "projector": projector,
@@ -171,6 +172,11 @@ class ReservationView(View):
         }
         return render(request, 'Book/room.html', ctx)
 
+
+class SearchView(View):
+
+    def get(self, request):
+        return render(request, 'Book/search.html')
 
 
 
