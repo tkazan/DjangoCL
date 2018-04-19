@@ -3,7 +3,8 @@
 {% block title %}Sale konferencyjne{% endblock %}
 
 {% block content %}
-    <h1>Sale konferencyjne do wynajęcia</h1>
+    <br/>
+    <h2>Sale konferencyjne do wynajęcia</h2>
     <table class="table table-striped table-bordered">
         <tr>
             <thead class="thead lead">
@@ -18,7 +19,12 @@
         <tr>
             <td><a href="{% url 'book:room' room.id %}">{{ room.name }}</a></td>
             <td>{{ room.capacity }}</td>
-            <td {% if status == "Wolna" %} class="text-success" {% else %} class="text-danger" {% endif %}>{{ status }}</td>
+            {% for k,v in status.items %}
+                {% if room.id == k %}
+                    <td{% if v == "Wolna" %} class="text-success"
+                    {% else %} class="text-danger" {% endif %}>{{ v }}</td>
+                {% endif %}
+            {% endfor %}
             <td><a href="{% url 'book:modify' room.id %}"><button class="btn btn-warning">modyfikuj</button></a></td>
             <td><a href="{% url 'book:delete' room.id %}"><button class="btn btn-danger">usuń</button></a></td>
         </tr>

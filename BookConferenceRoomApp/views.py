@@ -13,14 +13,16 @@ today = datetime.today().strftime('%Y-%m-%d')
 
 def index(request):
     rooms = Room.objects.all()
+    status = {}
+
     for room in rooms:
         if room.reservation_set.filter(date=today):
-            status = 'Zajęta'
+            status[room.id] = 'Zajęta'
         else:
-            status = 'Wolna'
-    ctx = {
-        'rooms': rooms,
-        'status': status,
+            status[room.id] = 'Wolna'
+        ctx = {
+            'rooms': rooms,
+            'status': status,
     }
     return render(request, 'Book/index.html', ctx)
 
@@ -114,7 +116,6 @@ class DeleteView(View):
 class ReservationView(View):
 
     def get(self, request, id):
-        id = int(id)
         room = Room.objects.get(pk=id)
         reservations = room.reservation_set.filter(date__gte=today).order_by('date')
         ctx = {
@@ -124,20 +125,44 @@ class ReservationView(View):
         return render(request, 'Book/reservation.html', ctx)
 
     def post(self, request, id):
-        id = int(id)
         room = Room.objects.get(pk=id)
-        reservations = room.reservation_set.filter(date__gte=today).order_by(
-            'date')
+        reservations = room.reservation_set.filter(date__gte=today).order_by('date')
+        try:
+            date = request.POST.get("date")
+            comment = request.POST.get("comment")
+            message = ""
+
+            if room.reservation_set.filter(date=date):
+                message = "Sala jest już zajęta w ten dzień"
+            elif date < today:
+                message = "Wybrana data nie może być z przeszłości"
+
+            if (message == "Sala jest już zajęta w ten dzień"
+                or message == "Wybrana data nie może być z przeszłości"):
+                ctx = {
+                    "room": room,
+                    "reservations": reservations,
+                    "message": message,
+                }
+                return render(request, 'Book/reservation.html', ctx)
+
+            reservation = Reservation.objects.create(date=date, comment=comment)
+            reservation.room.add(room)
+
+        except Exception as e:
+            message = "Niepoprawne dane: {}".format(e)
+            ctx = {
+                "message": message,
+                "room": room,
+                "reservations": reservations,
+            }
+            return render(request, 'Book/reservation.html', ctx)
+
         if room.projector == True:
             projector = "TAK"
         else:
             projector = "NIE"
-
-        if request.POST.get("submit"):
-            message = "Dziękujemy! Twoja rezerwacja powiodła się"
-        else:
-            message = ""
-            
+        message = "Dziękujemy! Zarezerwowałeś salę: {} w dniu: {}".format(room.name, date)
         ctx = {
             "room": room,
             "projector": projector,

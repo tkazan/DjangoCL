@@ -27,8 +27,11 @@
         <label>Data:
             <input type="date" name="date">
         </label><br/>
+        <label>Dodatkowe uwagi:<br/>
+            <textarea name="comment" class="form-control">Brak</textarea>
+        </label><br/>
         <input type="submit" name="submit" value="zarezerwuj" class="btn btn-success">
-        <a href="{% url 'book:room' room.id %}">
-            <button class="btn btn-warning">Powrót do widoku sali</button></a>
     </form>
+    <a href="{% url 'book:room' room.id %}">
+            <button class="btn btn-warning">Powrót do widoku sali</button></a>
 {% endblock %}
