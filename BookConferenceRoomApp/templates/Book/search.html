@@ -1,1 +1,13 @@
-Hello
+{% extends "Book/base.html" %}
+
+{% block title %}Wyszukiwanie{% endblock %}
+
+{% block content %}
+Witaj,<br/>
+
+szukasz sali: {{ room }}<br/>
+o minimalnej pojemności: {{ capacity }}<br/>
+w terminie: {{ date }}<br/>
+wymagany projektor: {{ projector }}
+
+{% endblock %}

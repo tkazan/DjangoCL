@@ -32,10 +32,25 @@
     </table>
     <a href="{% url 'book:new-room' %}">
         <button class="btn btn-success">Utwórz nową salę konferencyjną</button>
-    </a>
-    <br/>
-    <form id="search" method="get" action="{% url 'book:search' %}">
-        <input type="submit" value="Szukaj" class="btn btn-warning">
-    </form>
+    </a><br/><br/>
+    <div class="jumbotron">
+        <h3>WYSZUKAJ DOSTĘPNĄ SALĘ</h3>
+        <br/>
+        <form id="search" method="get" action="{% url 'book:search' %}">
+            <label>NAZWA SALI
+                <input type="text" name="room">
+            </label><br/>
+            <label>MINIMALNA POJEMNOŚĆ
+                <input type="number" name="capacity">
+            </label><br/>
+            <label>DATA REZERWACJI
+                <input type="date" name="date">
+            </label><br/>
+            <label>RZUTNIK
+                <input type="checkbox" name="projector">
+            </label><br/>
+                <input type="submit" value="Szukaj" class="btn btn-warning">
+        </form>
+    </div>
 
 {% endblock %}

@@ -176,7 +176,23 @@ class ReservationView(View):
 class SearchView(View):
 
     def get(self, request):
-        return render(request, 'Book/search.html')
+        room = request.GET.get("room")
+        capacity = request.GET.get("capacity")
+        date = request.GET.get("date")
+        projector = True if request.GET.get('projector') else False
+
+        if projector == True:
+            proj = "TAK"
+        else:
+            proj = "NIE"
+
+        ctx = {
+            "room": room,
+            "capacity": capacity,
+            "date": date,
+            "projector": proj,
+        }
+        return render(request, 'Book/search.html', ctx)
 
 
 
