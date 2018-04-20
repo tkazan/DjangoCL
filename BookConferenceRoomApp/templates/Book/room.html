@@ -7,7 +7,7 @@
     <table class="table table-bordered table-striped">
         <tr>
             <td>Sala konferencyjna</td>
-            <td>{{ room.name }}</td>
+            <td class="lead">{{ room.name|upper }}</td>
         </tr>
         <tr>
             <td>Pojemność</td>
@@ -29,6 +29,28 @@
             </td>
         </tr>
     </table>
+    <br/>
+
+    {% if room.id > 1 %}
+        <a href="{% url 'book:room' room.id|add:'-1' %}">
+            <button class="btn btn-warning">Poprzenia sala</button>
+        </a>
+    {% else %}
+        <a href="{% url 'book:room' rooms|length %}">
+            <button class="btn btn-warning">Poprzenia sala</button>
+        </a>
+    {% endif %}
+
+    {% if room.id < rooms|length %}
+        <a href="{% url 'book:room' room.id|add:'1' %}">
+            <button class="btn btn-warning">Kolejna sala</button>
+        </a>
+    {% else %}
+        <a href="{% url 'book:room' 1 %}">
+            <button class="btn btn-warning">Kolejna sala</button>
+        </a>
+    {% endif %}
+
     <br/>
     <p class="text-danger lead">{{ message }}</p>
 {% endblock %}

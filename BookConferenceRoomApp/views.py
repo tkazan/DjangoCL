@@ -31,6 +31,7 @@ def room(request, id):
     id = int(id)
     room = Room.objects.get(pk=id)
     reservations = room.reservation_set.filter(date__gte=today).order_by('date')
+    rooms = Room.objects.all()
     if room.projector == True:
         projector = "TAK"
     else:
@@ -39,6 +40,7 @@ def room(request, id):
         "room": room,
         "projector": projector,
         "reservations": reservations,
+        "rooms": rooms,
     }
     return render(request, 'Book/room.html', ctx)
 
@@ -192,7 +194,7 @@ class SearchView(View):
             result3 = result2.filter(capacity__gte=int(capacity))
         else:
             result3 = result2
-        
+
         if projector:
             result4 = result3.filter(projector=projector)
         else:
