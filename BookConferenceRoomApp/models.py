@@ -18,4 +18,5 @@ class Reservation(models.Model):
     comment = models.TextField()
 
     def __str__(self):
-        return "{}".format(self.date)
+        for r in self.room.all():
+            return "Data rezerwacji: {}, sala: {}".format(self.date, r.name)
