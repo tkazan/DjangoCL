@@ -195,6 +195,7 @@ class SearchView(View):
 
         ctx = {
             "results": result3,
+            "date": date,
 
         }
         return render(request, 'Book/search.html', ctx)

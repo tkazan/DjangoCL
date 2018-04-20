@@ -7,10 +7,11 @@
     <form method="POST" action="#">
     {% csrf_token %}
         <label>NAZWA SALI
-            <input type="text" name="name" class="form-control">
+            <input type="text" name="name" class="form-control" required="required">
         </label><br/>
         <label>POJEMNOŚĆ SALI
-            <input type="number" name="capacity" placeholder="np. 50" class="form-control">
+            <input type="number" name="capacity" placeholder="np. 50"
+                   class="form-control" required="required">
         </label><br/>
         <label>CZY JEST PROJEKTOR:
             <input type="radio" name="projector" value="True">TAK
