@@ -20,9 +20,9 @@ def index(request):
             status[room.id] = 'Zajęta'
         else:
             status[room.id] = 'Wolna'
-        ctx = {
-            'rooms': rooms,
-            'status': status,
+    ctx = {
+        'rooms': rooms,
+        'status': status,
     }
     return render(request, 'Book/index.html', ctx)
 
