@@ -17,7 +17,7 @@
     <tbody>
     {% for result in results %}
         <tr>
-            <td>{{ result.name }}</td>
+            <td><a href="{% url 'book:room' result.id %}">{{ result.name }}</a></td>
             <td>{{ result.capacity }}</td>
             <td>
                 {% if result.projector == True %}
@@ -30,6 +30,8 @@
     {% endfor %}
     </tbody>
 </table>
+<br/>
+<p class="text-danger">*Kliknięcie w nazwę sali przeniesie cię do strony rezerwacji</p>
 
 
 {% endblock %}

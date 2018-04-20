@@ -181,8 +181,6 @@ class SearchView(View):
         date = request.GET.get("date")
         projector = True if request.GET.get('projector') else False
 
-
-
         if room == "":
             result1 = Room.objects.all()
         else:
@@ -194,7 +192,6 @@ class SearchView(View):
             result2 = result1
 
         result3 = result2.filter(projector=projector)
-
 
         ctx = {
             "results": result3,
