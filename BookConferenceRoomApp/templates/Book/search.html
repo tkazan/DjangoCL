@@ -3,11 +3,33 @@
 {% block title %}Wyszukiwanie{% endblock %}
 
 {% block content %}
-Witaj,<br/>
+<br/>
+<h2>Sale dostępne w terminie: {{ date }} spełniające wymagania:</h2>
+<br/>
+<table class="table table-bordered table-striped">
+    <thead class="lead">
+        <tr>
+            <th>SALA:</th>
+            <th>POJEMNOŚĆ:</th>
+            <th>PROJEKTOR:</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for result in results %}
+        <tr>
+            <td>{{ result.name }}</td>
+            <td>{{ result.capacity }}</td>
+            <td>
+                {% if result.projector == True %}
+                Tak
+                {% else %}
+                Nie
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
 
-szukasz sali: {{ room }}<br/>
-o minimalnej pojemności: {{ capacity }}<br/>
-w terminie: {{ date }}<br/>
-wymagany projektor: {{ projector }}
 
 {% endblock %}
