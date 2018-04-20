@@ -181,22 +181,26 @@ class SearchView(View):
         date = request.GET.get("date")
         projector = True if request.GET.get('projector') else False
 
+        result1 = Room.objects.exclude(reservation__date=date)
+
         if room == "":
-            result1 = Room.objects.all()
+            result2 = result1
         else:
-            result1 = Room.objects.filter(name__icontains=room)
+            result2 = result1.filter(name__icontains=room)
 
         if capacity != "":
-            result2 = result1.filter(capacity__gte=int(capacity))
+            result3 = result2.filter(capacity__gte=int(capacity))
         else:
-            result2 = result1
-
-        result3 = result2.filter(projector=projector)
+            result3 = result2
+        
+        if projector:
+            result4 = result3.filter(projector=projector)
+        else:
+            result4 = result3
 
         ctx = {
-            "results": result3,
+            "results": result4,
             "date": date,
-
         }
         return render(request, 'Book/search.html', ctx)
 
