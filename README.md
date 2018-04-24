@@ -11,17 +11,17 @@ which is just for Django training
 
 #### REQUIREMENTS - How to start working with that project (on Ubuntu):
 1. Check if you have a <b>Python 3.5</b> installed:<br/> 
-$ python3 --version if not: <br/>
+$ python3 --version | if not: <br/>
 $ sudo apt-get update <br/>
 $ sudo apt-get install python3
 2. Check if you have <b>pip3</b> installed: <br/> 
-$ pip3 --version if not: <br/> 
+$ pip3 --version | if not: <br/> 
 $ sudo apt-get install -y python3-pip
 3. Check if you have <b>virtualenv</b> installed: <br/>
-$ virtualenv --version if not: <br/>
+$ virtualenv --version | if not: <br/>
 $ pip3 install virtualenv
 4. Check if you have <b>PostgreSQL</b> installed: <br/>
-$ psql --version if not: <br/>
+$ psql --version | if not: <br/>
 $ sudo apt-get install postgresql postgresql-contrib
 <br/> -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-
 5. Clone a repository on your PC
