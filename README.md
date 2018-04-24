@@ -1,11 +1,11 @@
 # Django CL Project
 
 This project consists of 2 separate apps:
-### 1. DjangoCLApp
-which is just for Django training
-
-### 2. BookConferenceRoomApp
+### 1. BookConferenceRoomApp
 which is an app for booking a conference room
+
+### 2. DjangoCLApp
+which is just for Django training
 
 <hr>
 
